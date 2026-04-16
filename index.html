@@ -1737,6 +1737,7 @@
         }
 
         @media (max-width: 767px) {
+            /* Navigation & Header */
             nav {
                 padding: 0.75rem 0.9rem;
             }
@@ -1746,10 +1747,12 @@
             }
 
             .brand-title {
-                font-size: 0.82rem;
+                font-size: 0.75rem;
                 line-height: 1.05;
+                letter-spacing: -0.02em;
             }
 
+            /* Hero Section */
             #home header {
                 min-height: 380px;
                 height: 64vh;
@@ -1761,15 +1764,34 @@
             }
 
             #home header h1 {
-                font-size: 2rem;
-                line-height: 1.03;
+                font-size: 1.75rem;
+                line-height: 1.1;
+                letter-spacing: -0.02em;
             }
 
             #home header p {
-                font-size: 0.9rem;
-                line-height: 1.55;
+                font-size: 0.85rem;
+                line-height: 1.5;
+                margin-top: 1rem;
             }
 
+            /* CTAs - Larger touch targets */
+            #home header .btn-lift {
+                min-height: 3rem;
+                padding: 0.85rem 1.5rem;
+                font-size: 0.8rem;
+                border-radius: 1.25rem;
+                width: 100%;
+                max-width: 180px;
+            }
+
+            .mobileMenu.mobile-menu-panel button {
+                min-height: 3rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            /* Horizontal scroll sections */
             .h-scroll {
                 gap: 0.8rem;
             }
@@ -1778,6 +1800,27 @@
                 flex-basis: 92%;
             }
 
+            /* Typography improvements */
+            h1 {
+                font-size: clamp(1.75rem, 5vw, 2.75rem) !important;
+                line-height: 1.1 !important;
+            }
+
+            h2 {
+                font-size: clamp(1.5rem, 4.5vw, 2rem) !important;
+                line-height: 1.15 !important;
+            }
+
+            h3 {
+                font-size: clamp(1.1rem, 3vw, 1.5rem) !important;
+            }
+
+            p {
+                font-size: clamp(0.85rem, 2vw, 1rem);
+                line-height: 1.6;
+            }
+
+            /* Review section */
             .review-wrap {
                 border-radius: 1.35rem;
                 padding: 1rem 0.75rem;
@@ -1785,83 +1828,263 @@
 
             .review-card {
                 min-height: 230px;
+                padding: 0.9rem;
             }
 
+            .review-card p {
+                font-size: 0.8rem;
+            }
+
+            .review-summary-card {
+                padding: 1rem;
+            }
+
+            /* Rental section */
             .rental-showroom {
                 border-radius: 1rem;
             }
 
             .rental-hero-area {
-                padding: 0.8rem 0.8rem 0.7rem;
+                padding: 0.7rem 0.7rem 0.65rem;
             }
 
             .rental-hero-media {
-                min-height: 220px;
+                min-height: 200px;
             }
 
+            .rental-card {
+                padding: 0.8rem;
+            }
+
+            .rental-card-title {
+                font-size: 1.75rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .rental-card-book {
+                min-height: 2.75rem;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .rental-spec-row {
+                margin-bottom: 0.8rem;
+            }
+
+            .rental-spec-item {
+                font-size: 0.65rem;
+            }
+
+            .rental-showroom-name {
+                font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            }
+
+            .rental-showroom-spec strong {
+                font-size: clamp(1rem, 1.8vw, 1.4rem);
+            }
+
+            .rental-showroom-actions {
+                flex-direction: column;
+            }
+
+            .rental-showroom-actions button {
+                min-height: 2.75rem;
+                padding: 0.65rem 1rem;
+                width: 100%;
+            }
+
+            /* Gallery & Club cards */
             .club-highlight-shell {
                 border-radius: 1.3rem;
-                padding: 1.1rem 0.8rem 1rem;
+                padding: 1rem 0.8rem 0.95rem;
+            }
+
+            .club-highlight-title {
+                font-size: clamp(1.3rem, 3vw, 1.8rem);
+            }
+
+            .club-highlight-copy {
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
 
             .club-card {
-                min-height: 170px;
+                min-height: 160px;
             }
 
             .club-card-info h4 {
-                font-size: 1.55rem;
+                font-size: 1.3rem;
+                line-height: 1.05;
             }
 
             .club-card-info p {
-                font-size: 0.68rem;
+                font-size: 0.62rem;
+                margin-top: 0.2rem;
             }
 
+            /* Tour cards */
             .tour-hover-card {
-                height: 460px;
-                border-radius: 1.3rem;
+                height: 420px;
+                border-radius: 1.25rem;
             }
 
+            .tour-hover-card .tour-base h3 {
+                font-size: 1.2rem;
+            }
+
+            .tour-hover-card .tour-base p {
+                font-size: 0.75rem;
+            }
+
+            .tour-hover-card .tour-details {
+                padding: 1.1rem 0.95rem;
+            }
+
+            .tour-details h3 {
+                font-size: 1.1rem;
+            }
+
+            .tour-details p {
+                font-size: 0.75rem;
+            }
+
+            /* Activity cards */
             .activity-grid {
-                gap: 1rem;
+                gap: 0.9rem;
             }
 
             .activity-card {
-                min-height: 290px;
-                border-radius: 1.35rem;
+                min-height: 280px;
+                border-radius: 1.3rem;
             }
 
             .activity-card-content {
-                padding: 0.9rem 0.8rem;
-                gap: 0.55rem;
+                padding: 0.8rem 0.7rem;
+                gap: 0.45rem;
+            }
+
+            .activity-card h3 {
+                font-size: clamp(1.35rem, 3.5vw, 1.8rem);
+            }
+
+            .activity-card p {
+                font-size: clamp(0.75rem, 1.5vw, 0.9rem);
             }
 
             .activity-card .cta {
-                min-width: 162px;
-                min-height: 42px;
-                font-size: 0.82rem;
+                min-width: 150px;
+                min-height: 2.75rem;
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
             }
 
+            .activity-chip {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            /* Modals */
             .review-arrow {
                 display: none;
             }
 
             .package-modal-backdrop {
-                padding: 0.6rem;
+                padding: 0.5rem;
             }
 
-            .package-modal-head,
+            .package-modal {
+                border-radius: 1rem;
+                max-height: 85vh;
+            }
+
+            .package-modal-head {
+                padding: 0.9rem;
+            }
+
             .package-modal-body {
-                padding-left: 0.85rem;
-                padding-right: 0.85rem;
+                padding: 0.9rem;
             }
 
+            .package-modal-title {
+                font-size: clamp(1.2rem, 3vw, 1.6rem);
+            }
+
+            .package-modal-close {
+                width: 1.8rem;
+                height: 1.8rem;
+                font-size: 1rem;
+            }
+
+            /* Booking controls */
             .package-slot-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.5rem;
             }
 
-            .tour-hover-card .tour-base,
-            .tour-hover-card .tour-details {
-                padding: 1.2rem 1rem;
+            .package-slot-btn {
+                min-height: 2.5rem;
+                font-size: 0.8rem;
+                border-radius: 0.55rem;
+            }
+
+            .package-variant-card {
+                padding: 0.65rem;
+            }
+
+            .package-variant-name {
+                font-size: 0.9rem;
+            }
+
+            .package-variant-price {
+                font-size: 0.95rem;
+            }
+
+            /* Form input focus improvement */
+            input[type="text"],
+            input[type="email"],
+            input[type="phone"],
+            textarea,
+            select {
+                font-size: 1rem;
+                padding: 0.8rem 0.9rem;
+                border-radius: 0.5rem;
+                min-height: 2.75rem;
+            }
+
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="phone"]:focus,
+            textarea:focus,
+            select:focus {
+                outline: 2px solid #0f7ff2;
+                outline-offset: 2px;
+            }
+
+            /* All buttons - better touch targets */
+            button:not(.review-more):not(.club-filter-pill button) {
+                min-height: 2.75rem;
+                padding: 0.65rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            button:not(.review-more):not(.club-filter-pill button):active {
+                transform: scale(0.98);
+            }
+
+            /* Links more tappable */
+            a:not(.package-modal-footer a) {
+                padding: 0.25rem;
+            }
+
+            /* Section padding improvements */
+            section {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+
+            /* Back buttons */
+            button:has(+ button) {
+                min-height: 2.5rem;
             }
         }
 
@@ -1899,6 +2122,73 @@
         @media (min-width: 1024px) {
             .mobile-quickbar {
                 display: none;
+            }
+        }
+
+        /* Extra small screens (< 390px) - very tight optimization */
+        @media (max-width: 389px) {
+            nav {
+                padding: 0.6rem 0.7rem;
+            }
+
+            .brand-title {
+                font-size: 0.65rem;
+            }
+
+            #home header h1 {
+                font-size: 1.5rem;
+            }
+
+            #home header p {
+                font-size: 0.8rem;
+            }
+
+            h1 {
+                font-size: clamp(1.5rem, 4.5vw, 2rem) !important;
+            }
+
+            h2 {
+                font-size: clamp(1.3rem, 4vw, 1.7rem) !important;
+            }
+
+            .rental-card-title {
+                font-size: 1.5rem;
+            }
+
+            .tour-hover-card {
+                height: 380px;
+            }
+
+            .activity-card {
+                min-height: 250px;
+            }
+
+            .package-slot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rental-spec-row {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.15rem;
+            }
+        }
+
+        /* Small screens (390px - 640px) - mobile optimized */
+        @media (min-width: 390px) and (max-width: 767px) {
+            #home header h1 {
+                font-size: 1.9rem;
+            }
+
+            .rental-card-title {
+                font-size: 1.85rem;
+            }
+
+            .tour-hover-card {
+                height: 440px;
+            }
+
+            .activity-card {
+                min-height: 300px;
             }
         }
 
