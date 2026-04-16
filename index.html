@@ -1861,6 +1861,7 @@
 
             .review-carousel {
                 position: relative;
+                overflow: hidden;
             }
 
             .review-track {
@@ -1869,12 +1870,13 @@
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
                 scroll-behavior: smooth;
-                padding: 0.05rem;
+                padding: 0.05rem 0;
                 align-items: flex-start;
+                width: 100%;
             }
 
             .review-card {
-                flex: 0 0 calc(100% - 0.4rem);
+                flex: 0 0 100%;
                 scroll-snap-align: start;
                 border-radius: 1rem;
                 border: 1px solid #e5e7eb;
@@ -2075,6 +2077,7 @@
             /* Modals */
             .review-arrow {
                 display: none;
+                pointer-events: none;
             }
 
             .package-modal-backdrop {
@@ -2214,12 +2217,6 @@
         @media (min-width: 1280px) {
             .activity-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .mobile-quickbar {
-                display: none;
             }
         }
 
@@ -2978,11 +2975,6 @@
             </div>
         </section>
     </main>
-
-    <div class="mobile-quickbar lg:hidden" aria-label="Quick actions">
-        <a href="https://wa.me/60149495457" target="_blank" rel="noopener noreferrer" class="primary">WhatsApp</a>
-        <a href="#contact" onclick="showPage('contact')" class="secondary">Contact Form</a>
-    </div>
 
     <div id="packageModalBackdrop" class="package-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="packageModalTitle">
         <article class="package-modal">
