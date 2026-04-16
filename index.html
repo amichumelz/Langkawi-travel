@@ -1064,9 +1064,10 @@
         }
 
         .activity-grid {
-            display: grid;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1.2rem;
-            grid-template-columns: 1fr;
         }
 
         .activity-card {
@@ -1074,6 +1075,8 @@
             overflow: hidden;
             border-radius: 1.7rem;
             min-height: 320px;
+            flex: 1 1 320px;
+            max-width: 420px;
             border: 1px solid rgba(148, 163, 184, 0.4);
             box-shadow: 0 12px 28px rgba(2, 6, 23, 0.18);
             isolation: isolate;
@@ -2201,10 +2204,6 @@
                 height: auto;
             }
 
-            .activity-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
             .package-variant-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -2215,9 +2214,6 @@
         }
 
         @media (min-width: 1280px) {
-            .activity-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
         }
 
         /* Extra small screens (< 390px) - very tight optimization */
@@ -2617,15 +2613,6 @@
                 </div>
 
                 <div class="activity-grid">
-                    <article class="activity-card reveal">
-                        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1400" alt="Langkawi Land Tour package">
-                        <div class="activity-card-content">
-                            <h3>Langkawi Land Tour</h3>
-                            <p>Click to check out packages we are offering to our customers. Select from the list inside.</p>
-                            <button onclick="openPackageDetails('land-tour')" class="cta">Discover Deals</button>
-                        </div>
-                    </article>
-
                     <article class="activity-card reveal reveal-delay-1">
                         <img src="https://media.cnn.com/api/v1/images/stellar/prod/170502125641-langkawi-malaysia-jet-ski.jpg?q=w_4208,h_3086,x_0,y_0,c_fill" alt="JetSki Tour Packages">
                         <div class="activity-card-content">
@@ -3326,8 +3313,8 @@
                 tag: 'Cruise',
                 title: 'Sunset Cruise',
                 description: 'Evening ocean cruise with golden hour views and relaxing vibes.',
-                stats: '3-4 Hours | Shared or Private | Evening',
-                price: 'From RM 180 / Person',
+                stats: '3-4 Hours | Sharing | Evening',
+                price: 'RM 250 / Sharing',
                 highlights: [
                     'Sunset panorama on open sea',
                     'Saltwater jacuzzi net area',
@@ -3344,8 +3331,8 @@
                     deadlineHours: 28,
                     cancellationText: 'Free cancellation up to 24 hours before departure.',
                     reserveText: 'Reserve now, pay later available for selected dates.',
-                    displayPrice: 'RM180',
-                    unitText: 'per person (from)'
+                    displayPrice: 'RM250',
+                    unitText: 'per sharing'
                 }
             },
             'three-in-one': {
