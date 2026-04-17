@@ -2223,6 +2223,42 @@
             color: #334155;
         }
 
+        .booking-preferred-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0.85rem 1.25rem;
+            text-align: center;
+        }
+
+        .booking-preferred-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .booking-preferred-wrap .package-modal-inline {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            box-sizing: border-box;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            .booking-preferred-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .package-slot-grid {
             padding: 0.85rem;
             display: grid;
@@ -3872,10 +3908,6 @@
                     <div id="packageModalVariants" class="package-variant-grid"></div>
                 </section>
 
-                <section class="package-modal-section">
-                    <h4>Start Time</h4>
-                    <p id="packageModalStart" class="package-modal-inline"></p>
-                </section>
 
                 <section class="package-modal-section">
                     <h4>Includes</h4>
@@ -3890,10 +3922,21 @@
                 <section class="package-booking-shell" aria-label="Booking options">
                     <div class="package-booking-header">
                         <p id="packageBookingTitle" class="package-booking-title">Select Time Slot</p>
-                        <p id="packageBookingSelected" class="package-booking-sub">Choose your preferred time for booking.</p>
+                        <p id="packageBookingSelected" class="package-booking-sub">Choose your preferred date and time for booking.</p>
                     </div>
 
-                    <div id="packageModalSlots" class="package-slot-grid"></div>
+                    <div class="booking-preferred-wrap">
+                        <div>
+                            <label for="packageModalPreferredDateInput" class="booking-preferred-label">Preferred Date</label>
+                            <input id="packageModalPreferredDateInput" type="date" class="package-modal-inline">
+                        </div>
+                        <div>
+                            <label for="packageModalTimeSelect" class="booking-preferred-label">Preferred Time</label>
+                            <select id="packageModalTimeSelect" class="package-modal-inline">
+                                <option value="">Select time</option>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="package-booking-alert">
                         <p id="packageBookingDeadline">42 hours left to book. This slot is filling up fast.</p>
@@ -3941,14 +3984,14 @@
         const packageModalHighlights = document.getElementById('packageModalHighlights');
         const packageModalVariantsSection = document.getElementById('packageModalVariantsSection');
         const packageModalVariants = document.getElementById('packageModalVariants');
-        const packageModalStart = document.getElementById('packageModalStart');
+        const packageModalPreferredDateInput = document.getElementById('packageModalPreferredDateInput');
+        const packageModalTimeSelect = document.getElementById('packageModalTimeSelect');
         const packageModalIncludes = document.getElementById('packageModalIncludes');
         const packageModalBonus = document.getElementById('packageModalBonus');
         const packageModalReserveLink = document.getElementById('packageModalReserveLink');
         const packageModalWhatsApp = document.getElementById('packageModalWhatsApp');
         const packageBookingTitle = document.getElementById('packageBookingTitle');
         const packageBookingSelected = document.getElementById('packageBookingSelected');
-        const packageModalSlots = document.getElementById('packageModalSlots');
         const packageBookingDeadline = document.getElementById('packageBookingDeadline');
         const packageBookingCancel = document.getElementById('packageBookingCancel');
         const packageBookingReserve = document.getElementById('packageBookingReserve');
@@ -3966,7 +4009,8 @@
                 title: 'Mangrove Package',
                 description: 'Choose your Mangrove package option based on your route and activity preference.',
                 stats: 'Multiple Options | River Cruise | Island Highlights',
-                price: 'From RM 400 / Private Boat',
+                preferredDate: 'November to March for best weather',
+                timeRange: { start: 9, end: 16 },
                 highlights: [
                     'Eagle Watching',
                     'River Cruise',
@@ -4038,7 +4082,6 @@
                         ]
                     }
                 ],
-                start: '9:30 AM or 2:00 PM',
                 includes: 'Boat tour crew | Life jacket | Safety briefing',
                 bonus: 'Free photo and video + Pickup and return around Langkawi (confirm by area)',
                 booking: {
@@ -4057,7 +4100,8 @@
                 title: 'Mangrove Package',
                 description: 'Group JetSki Mangrove tour with 9 exciting checkpoints around Kilim Geoforest and the Andaman Sea.',
                 stats: '3-4 Hours | 9 Checkpoints | Group Tour',
-                price: 'RM 750 / Jet Ski (2 Pax)',
+                preferredDate: 'November to April for calm seas',
+                timeRange: { start: 10, end: 16 },
                 highlights: [
                     'Fish Farm',
                     'Eagle Watching',
@@ -4069,7 +4113,6 @@
                     'Beach',
                     'Fish Feeding @ Dangli Island'
                 ],
-                start: '10:00 AM or 2:00 PM',
                 includes: 'Pickup/Drop Off (2-way) | Waterproof Bag | Life Jacket | Beach Shoes',
                 bonus: '2 pax included for each JetSki booking.',
                 booking: {
@@ -4088,7 +4131,8 @@
                 title: 'LUXURY TOUR WITH DRIVER',
                 description: 'Luxury tour with driver for a more comfortable and premium itinerary.',
                 stats: '4 or 8 Hours | Driver Included | Premium Vehicle',
-                price: '4 Hours RM700 | 8 Hours RM1200',
+                preferredDate: 'Year-round available',
+                timeRange: { start: 8, end: 16 },
                 highlights: [
                     'Luxury vehicle with driver',
                     'Flexible private itinerary',
@@ -4115,7 +4159,6 @@
                         ]
                     }
                 ],
-                start: 'Flexible (Morning or Afternoon)',
                 includes: 'Vehicle | Driver',
                 bonus: 'Premium comfort for private touring',
                 booking: {
@@ -4134,7 +4177,8 @@
                 title: 'Transport Van Tour With Driver',
                 description: 'Comfortable van tour with driver for group travel around Langkawi.',
                 stats: '4 or 8 Hours | Driver Included | Van Transport',
-                price: '4 Hours RM650 | 8 Hours RM750',
+                preferredDate: 'Year-round available',
+                timeRange: { start: 8, end: 16 },
                 highlights: [
                     'Transport van with driver',
                     'Group friendly seating',
@@ -4161,7 +4205,6 @@
                         ]
                     }
                 ],
-                start: 'Flexible (Morning or Afternoon)',
                 includes: 'Van | Driver',
                 bonus: 'Best for families and group touring',
                 booking: {
@@ -4180,7 +4223,8 @@
                 title: 'Langkawi Land Tour',
                 description: 'Explore top landmarks in one smooth day with local driver support.',
                 stats: '4-6 Hours | Flexible Route | Hotel Pickup',
-                price: 'From RM 320 / Car',
+                preferredDate: 'November to March for pleasant weather',
+                timeRange: { start: 8, end: 16 },
                 highlights: [
                     'Eagle Square (Dataran Lang)',
                     'Underwater World area',
@@ -4189,7 +4233,6 @@
                     'Duty-free shopping stop',
                     'Kuah town food suggestions'
                 ],
-                start: '8:30 AM or 2:00 PM',
                 includes: 'Driver | Fuel | Toll and parking guidance',
                 bonus: 'Custom stop arrangement based on your itinerary',
                 booking: {
@@ -4208,7 +4251,8 @@
                 title: 'Cable Car Combo',
                 description: 'Panoramic mountain views plus mangrove nature cruise in one booking.',
                 stats: '5 Hours | 2 Activities | Guided',
-                price: 'RM 290 / Person',
+                preferredDate: 'December to February for clear skies',
+                timeRange: { start: 8, end: 16 },
                 highlights: [
                     'Langkawi SkyCab ride',
                     'Mountain viewpoint photo stop',
@@ -4216,7 +4260,6 @@
                     'Bat Cave and Crocodile Cave',
                     'Eagle feeding session'
                 ],
-                start: '8:30 AM or 2:00 PM',
                 includes: 'SkyCab ticket | Cruise boat | Guide | Safety equipment',
                 bonus: 'Free mineral water + Scenic photo opportunities',
                 booking: {
@@ -4235,7 +4278,8 @@
                 title: 'Island Hopping',
                 description: 'Private boat Island Hopping tour with flexible stop options.',
                 stats: '3-4 Hours | Private Boat',
-                price: 'RM 550 / Private Boat',
+                preferredDate: 'October to May for smooth waters',
+                timeRange: { start: 9, end: 16 },
                 highlights: [
                     'View Of The Mountain (Pregnant Maiden Island)',
                     'Dayang Bunting Island',
@@ -4272,7 +4316,6 @@
                         ]
                     }
                 ],
-                start: '9:00 AM or 2:00 PM',
                 includes: 'Boat ride | Life jacket | Safety briefing',
                 bonus: 'Stop selection based on chosen package option',
                 booking: {
@@ -4291,14 +4334,14 @@
                 title: 'Sunset Cruise',
                 description: 'Evening ocean cruise with golden hour views and relaxing vibes.',
                 stats: '3-4 Hours | Sharing | Evening',
-                price: 'RM 250 / Sharing',
+                preferredDate: 'November to February for calm seas',
+                timeRange: { start: 16, end: 16 },
                 highlights: [
                     'Sunset panorama on open sea',
                     'Saltwater jacuzzi net area',
                     'Music and leisure deck',
                     'Photo spot with sunset horizon'
                 ],
-                start: '4:00 PM',
                 includes: 'Cruise ticket | Safety briefing | Selected package meals',
                 bonus: 'Premium plan includes special deck seating',
                 booking: {
@@ -4317,14 +4360,14 @@
                 title: '3 In 1 Activities',
                 description: 'Action-packed combination package for thrill seekers and groups.',
                 stats: '2-3 Hours | 3 Activities | Min 4 Pax',
-                price: 'RM 350 / Person',
+                preferredDate: 'November to April recommended',
+                timeRange: { start: 9, end: 16 },
                 highlights: [
                     'Jet Car ride',
                     'Parasailing on boat',
                     'Banana Boat session',
                     'Sea activity briefing'
                 ],
-                start: '10:00 AM or 3:00 PM',
                 includes: 'Safety gear | Crew support | Activity access',
                 bonus: 'Bundle package value pricing',
                 booking: {
@@ -4343,7 +4386,8 @@
                 title: 'Tour Langkawi With Sedan Car',
                 description: 'Private tour with Sedan for a 4-hour or 8-hour itinerary.',
                 stats: '4 or 8 Hours | Sedan | Private Route',
-                price: '4 Hours RM160 | 8 Hours RM250',
+                preferredDate: 'Year-round available',
+                timeRange: { start: 9, end: 16 },
                 highlights: [
                     'Sedan with driver',
                     'Flexible landmark route',
@@ -4370,7 +4414,6 @@
                         ]
                     }
                 ],
-                start: 'Flexible (Morning or Afternoon)',
                 includes: 'Sedan | Driver | Petrol',
                 bonus: 'Pickup from airport or hotel',
                 booking: {
@@ -4389,7 +4432,8 @@
                 title: 'Tour Langkawi With MPV Car',
                 description: 'Private tour with MPV for a 4-hour or 8-hour itinerary.',
                 stats: '4 or 8 Hours | MPV | Private Route',
-                price: '4 Hours RM200 | 8 Hours RM350',
+                preferredDate: 'Year-round available',
+                timeRange: { start: 9, end: 16 },
                 highlights: [
                     'MPV with driver',
                     'Spacious seating for family/group',
@@ -4416,7 +4460,6 @@
                         ]
                     }
                 ],
-                start: 'Flexible (Morning or Afternoon)',
                 includes: 'MPV | Driver | Petrol',
                 bonus: 'Pickup from airport or hotel',
                 booking: {
@@ -4435,7 +4478,8 @@
                 title: 'Langkawi Private Tour',
                 description: 'Customer can choose Sedan or MPV, with a 4-hour or 8-hour duration based on the itinerary.',
                 stats: '4 or 8 Hours | Sedan or MPV | Custom Route',
-                price: 'Sedan: 4 Hours RM160 | 8 Hours RM250 | MPV: 4 Hours RM200 | 8 Hours RM350',
+                preferredDate: 'Year-round available',
+                timeRange: { start: 9, end: 16 },
                 highlights: [
                     'Custom itinerary planning',
                     'Nature and landmark route',
@@ -4484,7 +4528,6 @@
                         ]
                     }
                 ],
-                start: 'Flexible (Morning or Afternoon)',
                 includes: 'Vehicle | Driver | Petrol',
                 bonus: 'Pickup from airport or hotel',
                 booking: {
@@ -4550,7 +4593,12 @@
                 return;
             }
 
-            const timeText = selectedBookingTime || activePackageDetail.start;
+            const preferredDate = packageModalPreferredDateInput.value ? new Date(`${packageModalPreferredDateInput.value}T00:00:00`).toLocaleDateString('en-MY', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            }) : 'Not selected';
+            const timeText = selectedBookingTime || packageModalTimeSelect.value || 'Not selected';
             const selectedVariant = getSelectedVariant(activePackageDetail);
             const selectedVariantText = selectedVariant ? `${selectedVariant.name} - ${selectedVariant.price}` : '';
             const selectedPackageTitle = getSelectedPackageTitle(activePackageDetail);
@@ -4567,6 +4615,7 @@
                 reserveLines.push(activePackageDetail.price);
             }
 
+            reserveLines.push(`Preferred date: ${preferredDate}`);
             reserveLines.push(`Preferred time: ${timeText}`);
             reserveLines.push('Please share reserve-now details. Thank you.');
 
@@ -4584,6 +4633,7 @@
                 bookLines.push(activePackageDetail.price);
             }
 
+            bookLines.push(`Preferred date: ${preferredDate}`);
             bookLines.push(`Preferred time: ${timeText}`);
             bookLines.push('Please confirm availability. Thank you.');
 
@@ -4593,36 +4643,31 @@
             packageModalWhatsApp.href = `https://wa.me/60149495457?text=${encodeURIComponent(bookMessage)}`;
         }
 
-        function renderBookingSlots(bookingMeta) {
-            packageModalSlots.innerHTML = '';
+        function syncPreferredBookingSelection() {
+            const selectedDateValue = packageModalPreferredDateInput.value;
+            const selectedTimeValue = packageModalTimeSelect.value;
 
-            if (!selectedBookingTime || bookingMeta.disabledTimes.includes(selectedBookingTime)) {
-                selectedBookingTime = bookingMeta.times.find((time) => !bookingMeta.disabledTimes.includes(time)) || '';
+            selectedBookingTime = selectedTimeValue;
+
+            if (!selectedDateValue && !selectedTimeValue) {
+                packageBookingSelected.textContent = 'Choose your preferred date and time for booking.';
+            } else {
+                const segments = [];
+                if (selectedDateValue) {
+                    const formattedDate = new Date(`${selectedDateValue}T00:00:00`).toLocaleDateString('en-MY', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric'
+                    });
+                    segments.push(`Date: ${formattedDate}`);
+                }
+                if (selectedTimeValue) {
+                    segments.push(`Time: ${selectedTimeValue}`);
+                }
+                packageBookingSelected.textContent = `Selected ${segments.join(' | ')}`;
             }
 
-            bookingMeta.times.forEach((time) => {
-                const btn = document.createElement('button');
-                const isDisabled = bookingMeta.disabledTimes.includes(time);
-
-                btn.type = 'button';
-                btn.className = `package-slot-btn${selectedBookingTime === time ? ' active' : ''}${isDisabled ? ' disabled' : ''}`;
-                btn.textContent = time;
-                btn.disabled = isDisabled;
-
-                if (!isDisabled) {
-                    btn.addEventListener('click', () => {
-                        selectedBookingTime = time;
-                        renderBookingSlots(bookingMeta);
-                        updateBookingLinks();
-                    });
-                }
-
-                packageModalSlots.appendChild(btn);
-            });
-
-            packageBookingSelected.textContent = selectedBookingTime
-                ? `Selected time: ${selectedBookingTime}`
-                : 'Choose your preferred time for booking.';
+            updateBookingLinks();
         }
 
         function renderVariantSelection(detail) {
@@ -4712,6 +4757,38 @@
             });
         }
 
+        function getTodayInputDateValue() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function generateTimeOptions(timeRange) {
+            packageModalTimeSelect.innerHTML = '<option value="">Select time</option>';
+            if (!timeRange || !timeRange.start || !timeRange.end) {
+                selectedBookingTime = '';
+                syncPreferredBookingSelection();
+                return;
+            }
+            
+            for (let hour = timeRange.start; hour <= timeRange.end; hour++) {
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const displayHour = hour > 12 ? hour - 12 : (hour === 0 ? 12 : hour);
+                const timeString = `${displayHour}:00 ${ampm}`;
+                const option = document.createElement('option');
+                option.value = timeString;
+                option.textContent = timeString;
+                packageModalTimeSelect.appendChild(option);
+            }
+
+            const firstAvailableTime = packageModalTimeSelect.options.length > 1 ? packageModalTimeSelect.options[1].value : '';
+            packageModalTimeSelect.value = firstAvailableTime;
+            selectedBookingTime = firstAvailableTime;
+            syncPreferredBookingSelection();
+        }
+
         function openPackageDetails(packageKey, initialVariantName = '', initialTitleOverride = '') {
             const detail = packageDetails[packageKey] || packageDetails.mangrove;
             if (!detail) {
@@ -4734,7 +4811,10 @@
             packageModalDescription.textContent = detail.description;
             packageModalStats.textContent = detail.stats;
             packageModalPrice.textContent = detail.price;
-            packageModalStart.textContent = detail.start;
+            const todayInputDate = getTodayInputDateValue();
+            packageModalPreferredDateInput.min = todayInputDate;
+            packageModalPreferredDateInput.value = todayInputDate;
+            generateTimeOptions(detail.timeRange);
             packageModalIncludes.textContent = detail.includes;
             packageModalBonus.textContent = detail.bonus;
 
@@ -4754,7 +4834,6 @@
                 packageModalPrice.textContent = detail.price;
             }
 
-            renderBookingSlots(bookingMeta);
             renderVariantSelection(detail);
             updateBookingLinks();
 
@@ -4784,6 +4863,9 @@
                 closePackageDetails();
             }
         });
+
+        packageModalPreferredDateInput.addEventListener('change', syncPreferredBookingSelection);
+        packageModalTimeSelect.addEventListener('change', syncPreferredBookingSelection);
 
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && !packageModalBackdrop.classList.contains('hidden')) {
