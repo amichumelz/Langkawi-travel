@@ -352,65 +352,11 @@
             background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.62) 100%);
         }
 
-        .atv-gallery-nav {
-            position: absolute;
-            left: 50%;
-            z-index: 2;
-            width: 2.3rem;
-            height: 2.3rem;
-            border: 0;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.88);
-            color: #0f172a;
-            font-size: 1.2rem;
-            font-weight: 900;
-            line-height: 1;
-            transform: translateX(-50%);
-            cursor: pointer;
-            transition: transform 0.25s ease, background-color 0.25s ease;
-        }
-
-        .atv-gallery-nav:hover {
-            transform: translateX(-50%) scale(1.08);
-            background: #ffffff;
-        }
-
-        .atv-gallery-nav.prev {
-            top: 0.8rem;
-        }
-
-        .atv-gallery-nav.next {
-            bottom: 0.8rem;
-        }
-
-        .atv-gallery-dots {
-            position: absolute;
-            right: 0.8rem;
-            top: 50%;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 0.45rem;
-            transform: translateY(-50%);
-        }
-
-        .atv-gallery-dot {
-            width: 0.5rem;
-            height: 0.5rem;
-            border: 0;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.45);
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .atv-gallery-dot.active {
-            background: #ffffff;
-            transform: scale(1.15);
-        }
-
         .atv-booking-field {
             width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
             min-height: 3.125rem;
             border-radius: 0.75rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -420,6 +366,10 @@
             line-height: 1.25rem;
             color: #0f172a;
             outline: none;
+        }
+
+        input[type="date"].atv-booking-field {
+            padding-right: 0.75rem;
         }
 
         select.atv-booking-field {
@@ -465,10 +415,8 @@
                 height: min(70vh, 24rem);
             }
 
-            .atv-gallery-nav {
-                width: 2rem;
-                height: 2rem;
-                font-size: 1rem;
+            .atv-detail-card .mt-5.grid > div {
+                min-width: 0;
             }
         }
 
@@ -3594,9 +3542,6 @@
                                     <img src="image/atv4.jpeg" alt="ATV customer photo 4">
                                 </figure>
                             </div>
-                            <button type="button" class="atv-gallery-nav prev" id="atvGalleryPrev" aria-label="Previous ATV photo">&#9650;</button>
-                            <button type="button" class="atv-gallery-nav next" id="atvGalleryNext" aria-label="Next ATV photo">&#9660;</button>
-                            <div class="atv-gallery-dots" id="atvGalleryDots" aria-label="ATV gallery slide indicators"></div>
                         </div>
                     </section>
                 </div>
@@ -5111,9 +5056,6 @@
         const atvTotalPrice = document.getElementById('atvTotalPrice');
         const atvUnitsNeeded = document.getElementById('atvUnitsNeeded');
         const atvGallerySlider = document.getElementById('atvGallerySlider');
-        const atvGalleryPrev = document.getElementById('atvGalleryPrev');
-        const atvGalleryNext = document.getElementById('atvGalleryNext');
-        const atvGalleryDots = document.getElementById('atvGalleryDots');
         const rentalModelButtons = document.querySelectorAll('[data-rental-model]');
         const driverModelButtons = document.querySelectorAll('[data-driver-model]');
         const rentalModeTabs = document.querySelectorAll('[data-rental-mode-tab]');
@@ -5447,35 +5389,17 @@
 
         function initAtvGallerySlideshow() {
             const slides = atvGallerySlider ? atvGallerySlider.querySelectorAll('.atv-gallery-slide') : [];
-            if (!slides.length || !atvGalleryDots) {
+            if (!slides.length) {
                 return;
             }
 
             let activeIndex = 0;
             let autoPlayTimer = null;
 
-            atvGalleryDots.innerHTML = '';
-
-            const dots = Array.from(slides).map((_, index) => {
-                const dot = document.createElement('button');
-                dot.type = 'button';
-                dot.className = 'atv-gallery-dot';
-                dot.setAttribute('aria-label', `Show ATV photo ${index + 1}`);
-                dot.addEventListener('click', () => {
-                    setActiveSlide(index);
-                    restartAutoPlay();
-                });
-                atvGalleryDots.appendChild(dot);
-                return dot;
-            });
-
             function setActiveSlide(index) {
                 activeIndex = (index + slides.length) % slides.length;
                 slides.forEach((slide, slideIndex) => {
                     slide.classList.toggle('is-active', slideIndex === activeIndex);
-                });
-                dots.forEach((dot, dotIndex) => {
-                    dot.classList.toggle('active', dotIndex === activeIndex);
                 });
             }
 
@@ -5497,20 +5421,6 @@
 
             function restartAutoPlay() {
                 startAutoPlay();
-            }
-
-            if (atvGalleryPrev) {
-                atvGalleryPrev.addEventListener('click', () => {
-                    setActiveSlide(activeIndex - 1);
-                    restartAutoPlay();
-                });
-            }
-
-            if (atvGalleryNext) {
-                atvGalleryNext.addEventListener('click', () => {
-                    setActiveSlide(activeIndex + 1);
-                    restartAutoPlay();
-                });
             }
 
             if (atvGallerySlider) {
