@@ -4495,7 +4495,7 @@
                 </section>
 
                 <div class="package-modal-footer">
-                    <a id="packageModalReserveLink" href="https://wa.me/60149495457" target="_blank" rel="noopener noreferrer" class="secondary">Reserve Now &amp; Pay Later</a>
+                    <button type="button" id="packageModalPayNowBtn" class="secondary">Pay Now</button>
                     <button type="button" id="packageModalAddCart" class="add-cart">Add to cart</button>
                     <a id="packageModalWhatsApp" href="https://wa.me/60149495457" target="_blank" rel="noopener noreferrer" class="primary">Book on WhatsApp</a>
                 </div>
@@ -4601,7 +4601,7 @@
         const packageModalTimeSelect = document.getElementById('packageModalTimeSelect');
         const packageModalIncludes = document.getElementById('packageModalIncludes');
         const packageModalBonus = document.getElementById('packageModalBonus');
-        const packageModalReserveLink = document.getElementById('packageModalReserveLink');
+        const packageModalPayNowBtn = document.getElementById('packageModalPayNowBtn');
         const packageModalWhatsApp = document.getElementById('packageModalWhatsApp');
         const packageBookingTitle = document.getElementById('packageBookingTitle');
         const packageBookingSelected = document.getElementById('packageBookingSelected');
@@ -5340,7 +5340,6 @@
 
             const bookMessage = bookLines.join('\n');
 
-            packageModalReserveLink.href = `https://wa.me/60149495457?text=${encodeURIComponent(reserveMessage)}`;
             packageModalWhatsApp.href = `https://wa.me/60149495457?text=${encodeURIComponent(bookMessage)}`;
         }
 
@@ -5982,6 +5981,21 @@
                 }
             });
         }
+        if (packageModalPayNowBtn) {
+            packageModalPayNowBtn.addEventListener('click', () => {
+                const cartSizeBefore = cart.length;
+                addCurrentPackageToCart();
+                // Only close the modal if the item was successfully added to cart
+                if (cart.length > cartSizeBefore) {
+                    packageModalBackdrop.classList.add('hidden');
+                    activePackageDetail = null;
+                    selectedBookingTime = '';
+                    selectedPackageVariantName = '';
+                    selectedPackageTitleOverride = '';
+                }
+            });
+        }
+
         if (cartPayBtn) {
             cartPayBtn.addEventListener('click', () => submitCartToBillplz());
         }
