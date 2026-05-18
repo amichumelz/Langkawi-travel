@@ -1254,21 +1254,32 @@
 
         .rental-showroom-actions {
             display: flex;
-            gap: 0.65rem;
+            gap: 0.55rem;
             flex-wrap: wrap;
             margin-top: 0.85rem;
+        }
+
+        .rental-showroom-actions button,
+        .rental-showroom-actions a {
+            border-radius: 0.5rem;
+            padding: 0.65rem 1rem;
+            font-size: 0.79rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
         }
 
         .rental-showroom-actions .primary {
             background: #111827;
             color: #fff;
-            border-radius: 0.5rem;
-            padding: 0.65rem 1.2rem;
-            font-size: 0.82rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
-            transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .rental-showroom-actions .primary:hover {
@@ -1277,16 +1288,63 @@
             box-shadow: 0 10px 20px rgba(15, 127, 242, 0.18);
         }
 
+        .rental-showroom-actions .pay-deposit {
+            background: linear-gradient(120deg, #0a8f72, #0b7c64);
+            color: #fff;
+        }
+
+        .rental-showroom-actions .pay-deposit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(10, 143, 114, 0.28);
+        }
+
+        .rental-showroom-actions .pay-full {
+            background: linear-gradient(120deg, #0a8f72, #0b7c64);
+            color: #fff;
+        }
+
+        .rental-showroom-actions .pay-full:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(10, 143, 114, 0.28);
+        }
+
+        .rental-showroom-actions .add-cart {
+            background: linear-gradient(120deg, #0f7ff2, #005ec4);
+            color: #fff;
+        }
+
+        .rental-showroom-actions .add-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 127, 242, 0.28);
+        }
+
+        .rental-showroom-actions .wa-book {
+            background: linear-gradient(140deg, #25d366, #1aa54f);
+            color: #fff;
+        }
+
+        .rental-showroom-actions .wa-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.28);
+        }
+
+        .rental-deposit-note {
+            margin-top: 0.55rem;
+            font-size: 0.77rem;
+            color: #64748b;
+            line-height: 1.45;
+            font-style: italic;
+        }
+
+        .rental-deposit-note strong {
+            color: #0f172a;
+            font-style: normal;
+        }
+
         .rental-showroom-actions .ghost {
             background: #fff;
             color: #111827;
             border: 1px solid #cbd5e1;
-            border-radius: 0.5rem;
-            padding: 0.65rem 1.2rem;
-            font-size: 0.82rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
         }
 
         .club-gallery-scene {
@@ -4201,8 +4259,11 @@
                                 <p id="rentalExtraHourHint" class="rental-season-note">Additional hour: RM10/hour. If rental exceeds 5 hours, it will be charged as a full day.</p>
                                 <p id="rentalTotalHint" class="rental-season-note">Rental period: 1 day. Estimated total: RM 80.</p>
                                 <div class="rental-showroom-actions">
-                                    <button id="rentalBookNowBtn" type="button" class="primary">Book Now</button>
+                                    <button id="rentalPayDepositBtn" type="button" class="pay-deposit"><i class="bi bi-credit-card"></i> Pay Deposit RM100</button>
+                                    <button id="rentalAddToCartBtn" type="button" class="add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+                                    <button id="rentalBookNowBtn" type="button" class="wa-book"><i class="bi bi-whatsapp"></i> Book via WhatsApp</button>
                                 </div>
+                                <p class="rental-deposit-note"><strong>RM100 deposit</strong> required to secure booking. Balance paid on arrival.</p>
                             </div>
                             <div class="rental-showroom-specs">
                                 <div class="rental-showroom-spec">
@@ -4246,8 +4307,11 @@
                                 <h3 id="driverHeroName" class="rental-showroom-name">Sedan Toyota Vios with Driver</h3>
                                 <p id="driverHeroNote" class="rental-showroom-note">Comfortable private transfer for small groups</p>
                                 <div class="rental-showroom-actions">
-                                    <button id="driverBookNowBtn" type="button" class="primary">View Package</button>
+                                    <button id="driverPayNowBtn" type="button" class="pay-full"><i class="bi bi-credit-card"></i> Pay Now</button>
+                                    <button id="driverAddToCartBtn" type="button" class="add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+                                    <button id="driverBookNowBtn" type="button" class="wa-book"><i class="bi bi-whatsapp"></i> Book via WhatsApp</button>
                                 </div>
+                                <p class="rental-deposit-note"><strong>Full payment</strong> accepted on website. Secure your booking now.</p>
                             </div>
                             <div class="rental-showroom-specs">
                                 <div class="rental-showroom-spec">
@@ -4302,8 +4366,11 @@
                                 </div>
                                 <p id="rentalMotorTotalHint" class="rental-season-note">Rental period: 1 day. Estimated total: RM 90.</p>
                                 <div class="rental-showroom-actions">
-                                    <button id="rentalMotorBookNowBtn" type="button" class="primary">Book Now</button>
+                                    <button id="rentalMotorPayDepositBtn" type="button" class="pay-deposit"><i class="bi bi-credit-card"></i> Pay Deposit RM100</button>
+                                    <button id="rentalMotorAddToCartBtn" type="button" class="add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+                                    <button id="rentalMotorBookNowBtn" type="button" class="wa-book"><i class="bi bi-whatsapp"></i> Book via WhatsApp</button>
                                 </div>
+                                <p class="rental-deposit-note"><strong>RM100 deposit</strong> required to secure booking. Balance paid on arrival.</p>
                             </div>
                             <div class="rental-showroom-specs">
                                 <div class="rental-showroom-spec">
@@ -5637,7 +5704,7 @@
                 row.className = 'cart-line';
                 row.innerHTML = `
                     <p class="cart-line-title">${line.title}</p>
-                    <p class="cart-line-meta">${line.variant ? `${line.variant}<br>` : ''}${line.date ? `Date: ${line.date}` : ''}${line.time ? ` · Time: ${line.time}` : ''}</p>
+                    <p class="cart-line-meta">${line.variant ? `${line.variant}<br>` : ''}${line.date ? `Date: ${line.date}` : ''}${line.time ? ` · Time: ${line.time}` : ''}${line.isDeposit ? `<br><em style="color:#0a8f72;font-size:0.76rem;font-weight:700;">⚡ Deposit only — ${line.depositNote || 'Balance paid on arrival.'}</em>` : ''}</p>
                     <div class="cart-line-foot">
                         <span class="cart-line-price">${line.priceLabel}</span>
                         <button type="button" class="cart-line-remove" data-id="${line.id}">Remove</button>
@@ -6330,6 +6397,8 @@
         const rentalExtraHourHint = document.getElementById('rentalExtraHourHint');
         const rentalTotalHint = document.getElementById('rentalTotalHint');
         const rentalBookNowBtn = document.getElementById('rentalBookNowBtn');
+        const rentalPayDepositBtn = document.getElementById('rentalPayDepositBtn');
+        const rentalAddToCartBtn = document.getElementById('rentalAddToCartBtn');
         const rentalModelSelect = document.getElementById('rentalModelSelect');
         const rentalReturnDateInput = document.getElementById('rentalReturnDateInput');
         const rentalPickupTimeSelect = document.getElementById('rentalPickupTimeSelect');
@@ -6355,6 +6424,8 @@
         const driverSpec4 = document.getElementById('driverSpec4');
         const driverOrderNowBtn = document.getElementById('driverOrderNowBtn');
         const driverBookNowBtn = document.getElementById('driverBookNowBtn');
+        const driverPayNowBtn = document.getElementById('driverPayNowBtn');
+        const driverAddToCartBtn = document.getElementById('driverAddToCartBtn');
         const clubHighlightTrack = document.getElementById('clubHighlightTrack');
         const malaysiaPeakRangeBuilders = [
             (year) => [`${year}-01-25`, `${year}-02-10`],
@@ -6647,6 +6718,119 @@
             window.open(`https://wa.me/60149495457?text=${encodeURIComponent(message)}`, '_blank');
         }
 
+        // ─── Self Drive: Pay Deposit & Add to Cart ──────────────────────────
+        function buildSelfDriveCartItem() {
+            const model = rentalModels[activeRentalModelKey];
+            if (!model) return null;
+            const summary = getSelfDriveBookingSummary(model);
+            const depositCents = 10000; // RM100 deposit
+            const pickupDateStr = summary.pickupDate !== 'Not selected'
+                ? summary.pickupDate
+                : (rentalDateInput ? rentalDateInput.value : '');
+            const formattedDate = pickupDateStr && pickupDateStr.includes('-')
+                ? new Date(`${pickupDateStr}T00:00:00`).toLocaleDateString('en-MY', { day: '2-digit', month: 'short', year: 'numeric' })
+                : (pickupDateStr || 'Not selected');
+            return {
+                id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+                packageKey: 'rental-self-drive',
+                title: `Self Drive — ${model.name}`,
+                variant: `${summary.rentalDays} day${summary.rentalDays > 1 ? 's' : ''} | Total est. RM${summary.totalPriceValue.toLocaleString('en-MY')}`,
+                priceLabel: 'RM100 (Deposit)',
+                cents: depositCents,
+                date: formattedDate,
+                time: summary.pickupTime,
+                isDeposit: true,
+                depositNote: 'Balance paid on arrival.'
+            };
+        }
+
+        function rentalSelfDriveAddToCart() {
+            const item = buildSelfDriveCartItem();
+            if (!item) return;
+            cart.push(item);
+            saveCart();
+            renderCartPanel();
+            openCart();
+        }
+
+        function rentalSelfDrivePayDeposit() {
+            const cartSizeBefore = cart.length;
+            rentalSelfDriveAddToCart();
+            if (cart.length > cartSizeBefore) {
+                // Cart is open; user can complete checkout there
+            }
+        }
+
+        // ─── Driver: Pay Now & Add to Cart ─────────────────────────────────
+        function openDriverWhatsAppBooking() {
+            const model = driverModels[activeDriverModelKey];
+            if (!model) return;
+            const message = [
+                'Hi ALIF LANGKAWI EXPERIENCE,',
+                'I want to book a Car with Driver:',
+                model.title,
+                `Price: ${model.price}`,
+                `Duration: ${model.duration}`,
+                'Please confirm availability and preferred date. Thank you.'
+            ].join('\n');
+            window.open(`https://wa.me/60149495457?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function rentalDriverPayNow() {
+            const model = driverModels[activeDriverModelKey];
+            if (!model) return;
+            openPackageDetails(model.packageKey, model.packageVariantName || '', model.packageTitleOverride || '');
+        }
+
+        function rentalDriverAddToCart() {
+            const model = driverModels[activeDriverModelKey];
+            if (!model) return;
+            openPackageDetails(model.packageKey, model.packageVariantName || '', model.packageTitleOverride || '');
+        }
+
+        // ─── Motor: Pay Deposit & Add to Cart ──────────────────────────────
+        function buildMotorCartItem() {
+            const model = motorModels[activeMotorModelKey];
+            if (!model) return null;
+            const summary = getMotorBookingSummary(model);
+            const depositCents = 10000; // RM100 deposit
+            const pickupDateStr = summary.pickupDate !== 'Not selected'
+                ? summary.pickupDate
+                : (rentalMotorDateInput ? rentalMotorDateInput.value : '');
+            const formattedDate = pickupDateStr && pickupDateStr.includes('-')
+                ? new Date(`${pickupDateStr}T00:00:00`).toLocaleDateString('en-MY', { day: '2-digit', month: 'short', year: 'numeric' })
+                : (pickupDateStr || 'Not selected');
+            return {
+                id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+                packageKey: 'rental-motor',
+                title: `Motor Rental — ${model.name}`,
+                variant: `${summary.rentalDays} day${summary.rentalDays > 1 ? 's' : ''} | Total est. RM${summary.totalPriceValue.toLocaleString('en-MY')}`,
+                priceLabel: 'RM100 (Deposit)',
+                cents: depositCents,
+                date: formattedDate,
+                time: summary.pickupTime,
+                isDeposit: true,
+                depositNote: 'Balance paid on arrival.'
+            };
+        }
+
+        function rentalMotorAddToCartFn() {
+            const item = buildMotorCartItem();
+            if (!item) return;
+            cart.push(item);
+            saveCart();
+            renderCartPanel();
+            openCart();
+        }
+
+        function rentalMotorPayDepositFn() {
+            const cartSizeBefore = cart.length;
+            rentalMotorAddToCartFn();
+            if (cart.length > cartSizeBefore) {
+                // Cart is open; user can complete checkout there
+            }
+        }
+
         function bookAtvRide() {
             const pickupDate = atvDateInput && atvDateInput.value ? atvDateInput.value : 'Not selected';
             const pickupTime = atvTimeSelect && atvTimeSelect.value ? atvTimeSelect.value : 'Not selected';
@@ -6746,6 +6930,12 @@
 
         if (rentalBookNowBtn) {
             rentalBookNowBtn.addEventListener('click', openSelfDriveWhatsAppBooking);
+        }
+        if (rentalPayDepositBtn) {
+            rentalPayDepositBtn.addEventListener('click', rentalSelfDrivePayDeposit);
+        }
+        if (rentalAddToCartBtn) {
+            rentalAddToCartBtn.addEventListener('click', rentalSelfDriveAddToCart);
         }
 
         populateRentalTimeOptions();
@@ -6854,11 +7044,15 @@
 
         initAtvGallerySlideshow();
 
+        let activeDriverModelKey = 'vios';
+
         function setDriverModel(modelKey) {
             const model = driverModels[modelKey];
             if (!model || !driverHeroImage) {
                 return;
             }
+
+            activeDriverModelKey = modelKey;
 
             if (driverTopLabel) {
                 driverTopLabel.textContent = model.name;
@@ -6877,7 +7071,15 @@
             }
 
             if (driverBookNowBtn) {
-                driverBookNowBtn.onclick = () => openPackageDetails(model.packageKey, model.packageVariantName, model.packageTitleOverride);
+                driverBookNowBtn.onclick = openDriverWhatsAppBooking;
+            }
+
+            if (driverPayNowBtn) {
+                driverPayNowBtn.onclick = () => openPackageDetails(model.packageKey, model.packageVariantName || '', model.packageTitleOverride || '');
+            }
+
+            if (driverAddToCartBtn) {
+                driverAddToCartBtn.onclick = () => openPackageDetails(model.packageKey, model.packageVariantName || '', model.packageTitleOverride || '');
             }
 
             driverModelButtons.forEach((button) => {
@@ -7085,6 +7287,16 @@
 
         if (rentalMotorBookNowBtn) {
             rentalMotorBookNowBtn.addEventListener('click', openMotorWhatsAppBooking);
+        }
+
+        const rentalMotorPayDepositBtn = document.getElementById('rentalMotorPayDepositBtn');
+        const rentalMotorAddToCartBtn = document.getElementById('rentalMotorAddToCartBtn');
+
+        if (rentalMotorPayDepositBtn) {
+            rentalMotorPayDepositBtn.addEventListener('click', rentalMotorPayDepositFn);
+        }
+        if (rentalMotorAddToCartBtn) {
+            rentalMotorAddToCartBtn.addEventListener('click', rentalMotorAddToCartFn);
         }
 
         function setRentalMode(mode) {
